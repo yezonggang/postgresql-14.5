@@ -1,0 +1,3 @@
+D:/PostgreSQL_C/postgresql-14.5/cmake-build-debug/CMakeFiles/postgres_server.dir
+D:/PostgreSQL_C/postgresql-14.5/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/PostgreSQL_C/postgresql-14.5/cmake-build-debug/CMakeFiles/rebuild_cache.dir
