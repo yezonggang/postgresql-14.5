@@ -122,6 +122,7 @@ static char *share_path = NULL;
 
 /* values to be obtained from arguments */
 static char *pg_data = NULL;
+static char *pg_test_parameter = NULL;
 static char *encoding = NULL;
 static char *locale = NULL;
 static char *lc_collate = NULL;
@@ -2273,6 +2274,7 @@ usage(const char *progname)
 	printf(_("  -N, --no-sync             do not wait for changes to be written safely to disk\n"));
 	printf(_("      --no-instructions     do not print instructions for next steps\n"));
 	printf(_("  -s, --show                show internal settings\n"));
+	printf(_("  -p, --pg-test-parameter                show pg_test_parameter settings\n"));
 	printf(_("  -S, --sync-only           only sync data directory\n"));
 	printf(_("\nOther options:\n"));
 	printf(_("  -V, --version             output version information, then exit\n"));
@@ -2941,6 +2943,7 @@ main(int argc, char *argv[])
 		{"no-clean", no_argument, NULL, 'n'},
 		{"nosync", no_argument, NULL, 'N'}, /* for backwards compatibility */
 		{"no-sync", no_argument, NULL, 'N'},
+		{"pg_test_parameter", required_argument, NULL, 'N'},
 		{"no-instructions", no_argument, NULL, 13},
 		{"sync-only", no_argument, NULL, 'S'},
 		{"waldir", required_argument, NULL, 'X'},
@@ -2989,7 +2992,7 @@ main(int argc, char *argv[])
 
 	/* process command-line options */
 
-	while ((c = getopt_long(argc, argv, "A:dD:E:gkL:nNsST:U:WX:", long_options, &option_index)) != -1)
+	while ((c = getopt_long(argc, argv, "A:dD:E:gkL:nNsST:U:WX:p:", long_options, &option_index)) != -1)
 	{
 		switch (c)
 		{
@@ -3015,6 +3018,9 @@ main(int argc, char *argv[])
 			case 'D':
 				pg_data = pg_strdup(optarg);
 				break;
+            case 'p':
+                pg_test_parameter = pg_strdup(optarg);
+                break;
 			case 'E':
 				encoding = pg_strdup(optarg);
 				break;
@@ -3232,6 +3238,13 @@ main(int argc, char *argv[])
 	}
 	else
 		printf(_("\nSync to disk skipped.\nThe data directory might become corrupt if the operating system crashes.\n"));
+
+    if (pg_test_parameter)
+    {
+        printf(_("pg_test_parameter ok. \n"));
+    }
+    else
+        printf(_("pg_test_parameter not ok..\n"));
 
 	if (authwarning)
 	{

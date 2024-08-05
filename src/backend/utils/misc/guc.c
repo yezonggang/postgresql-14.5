@@ -644,6 +644,7 @@ static char *timezone_string;
 static char *log_timezone_string;
 static char *timezone_abbreviations_string;
 static char *data_directory;
+static char *pg_test_parameter;
 static char *session_authorization_string;
 static int	max_function_args;
 static int	max_index_keys;
@@ -4352,7 +4353,16 @@ static struct config_string ConfigureNamesString[] =
 		NULL,
 		NULL, NULL, NULL
 	},
-
+    {
+		{"pg_test_parameter", PGC_INTERNAL, PRESET_OPTIONS,
+			gettext_noop("Sets pg test parameter."),
+			NULL,
+			GUC_NOT_IN_SAMPLE | GUC_DISALLOW_IN_FILE
+		},
+		&pg_test_parameter,
+            NULL,
+            NULL, NULL, NULL
+    },
 	{
 		{"config_file", PGC_POSTMASTER, FILE_LOCATIONS,
 			gettext_noop("Sets the server's main configuration file."),

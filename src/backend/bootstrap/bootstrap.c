@@ -53,7 +53,7 @@
 
 uint32		bootstrap_data_checksum_version = 0;	/* No checksum */
 
-
+static char *pg_test_parameter = NULL;
 static void CheckerModeMain(void);
 static void BootstrapModeMain(void);
 static void bootstrap_signals(void);
@@ -225,7 +225,7 @@ AuxiliaryProcessMain(int argc, char *argv[])
 	/* If no -x argument, we are a CheckerProcess */
 	MyAuxProcType = CheckerProcess;
 
-	while ((flag = getopt(argc, argv, "B:c:d:D:Fkr:x:X:-:")) != -1)
+	while ((flag = getopt(argc, argv, "B:p:c:d:D:Fkr:x:X:-:")) != -1)
 	{
 		switch (flag)
 		{
@@ -235,6 +235,9 @@ AuxiliaryProcessMain(int argc, char *argv[])
 			case 'D':
 				userDoption = pstrdup(optarg);
 				break;
+            case 'p':
+                pg_test_parameter = pstrdup(optarg);
+                break;
 			case 'd':
 				{
 					/* Turn on debugging for the bootstrap process. */
