@@ -580,6 +580,7 @@ bool		session_auth_is_superuser;
 
 int			log_min_error_statement = ERROR;
 int			log_min_messages = WARNING;
+int			test_my_guc = 0;
 int			client_min_messages = NOTICE;
 int			log_min_duration_sample = -1;
 int			log_min_duration_statement = -1;
@@ -2133,6 +2134,16 @@ static struct config_bool ConfigureNamesBool[] =
 
 static struct config_int ConfigureNamesInt[] =
 {
+        {
+                {"test_my_guc", PGC_USERSET, RESOURCES_MEM,
+                 gettext_noop("test_my_guc ok."),
+                 NULL,
+                 GUC_EXPLAIN
+                },
+                &test_my_guc,
+                0, 0, 100,
+                NULL, NULL, NULL
+        },
 	{
 		{"archive_timeout", PGC_SIGHUP, WAL_ARCHIVING,
 			gettext_noop("Forces a switch to the next WAL file if a "
