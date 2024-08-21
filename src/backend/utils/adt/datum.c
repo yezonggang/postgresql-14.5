@@ -179,6 +179,16 @@ datumCopy(Datum value, bool typByVal, int typLen)
 	return res;
 }
 
+Datum
+pg_test_function(PG_FUNCTION_ARGS)
+{
+    int32 input = PG_GETARG_INT32(0);
+    int32 result;
+
+    result = input * 2;
+
+    PG_RETURN_INT32(result);
+}
 /*-------------------------------------------------------------------------
  * datumTransfer
  *

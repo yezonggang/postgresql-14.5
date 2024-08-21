@@ -11620,5 +11620,9 @@
   proname => 'brin_minmax_multi_summary_send', provolatile => 's',
   prorettype => 'bytea', proargtypes => 'pg_brin_minmax_multi_summary',
   prosrc => 'brin_minmax_multi_summary_send' },
+{ oid => '8888', descr => 'pg_test_function',
+  proname => 'pg_test_function',
+  prorettype => 'int4', proargtypes => 'int4',
+  prosrc => 'pg_test_function' },
 
 ]
